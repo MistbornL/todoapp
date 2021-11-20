@@ -1,29 +1,25 @@
 import React, { useEffect, useState } from "react";
-
-const TodosContext = React.createContext({
-  todos: [],
-  fetchTodos: () => {},
-});
-
 const Todos = () => {
-  const [todos, setTodos] = useState([]);
-  const fetchTodos = async () => {
-    const response = await fetch("http://localhost:8000/api/get/all/post");
-    const todos = await response.json();
-    setTodos(todos.data);
-  };
-  console.log(todos);
+  const [items, setItems] = useState([]);
   useEffect(() => {
-    fetchTodos();
+    const fetchAllItems = async () => {
+      const response = await fetch("http://localhost:8000/api/get/all/post");
+      const fetchedItems = await response.json();
+      setItems(fetchedItems);
+      console.log(items);
+    };
+    // const interval = setInterval(fetchAllItems, 1000);
+    // return () => {
+    //   clearInterval(interval);
+    // };
   }, []);
+
   return (
-    <TodosContext.Provider value={{ todos, fetchTodos }}>
-      {todos.map((todo) => (
-        <ul>
-          <li>{todo.item}</li>
-        </ul>
-      ))}
-    </TodosContext.Provider>
+    <ul>
+      {items.map((item) => {
+        <li>{item}</li>;
+      })}
+    </ul>
   );
 };
 
