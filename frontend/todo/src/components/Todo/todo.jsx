@@ -8,18 +8,20 @@ const Todos = () => {
       setItems(fetchedItems);
       console.log(items);
     };
-    // const interval = setInterval(fetchAllItems, 1000);
-    // return () => {
-    //   clearInterval(interval);
-    // };
+    const interval = setInterval(fetchAllItems, 5000);
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   return (
-    <ul>
-      {items.map((item) => {
-        <li>{item}</li>;
-      })}
-    </ul>
+    <div className="list">
+      <ul>
+        {items.map((item) => {
+          <li>{item.item}</li>;
+        })}
+      </ul>
+    </div>
   );
 };
 
