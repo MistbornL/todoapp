@@ -106,3 +106,12 @@ input {
 ::selection {
   background: rgba($secondary-color, 0.3);
 }
+
+ul {
+  list-style: none;
+}
+
+li {
+  font-size: 30px;
+  color: rgba(255, 255, 255, 0.5);
+}

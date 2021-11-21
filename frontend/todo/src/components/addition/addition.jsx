@@ -1,3 +1,4 @@
+import Todos from "../Todo/todo";
 import "./index.scss";
 
 const Addition = () => {
@@ -8,6 +9,7 @@ const Addition = () => {
         <label htmlFor="name">ToDo Item</label>
         <div className="bar"></div>
       </div>
+      <Todos />
     </div>
   );
 };

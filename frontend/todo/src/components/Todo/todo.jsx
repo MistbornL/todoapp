@@ -2,23 +2,16 @@ import React, { useEffect, useState } from "react";
 const Todos = () => {
   const [items, setItems] = useState([]);
   useEffect(() => {
-    const fetchAllItems = async () => {
-      const response = await fetch("http://localhost:8000/api/get/all/post");
-      const fetchedItems = await response.json();
-      setItems(fetchedItems);
-      console.log(items);
-    };
-    const interval = setInterval(fetchAllItems, 5000);
-    return () => {
-      clearInterval(interval);
-    };
+    fetch("http://localhost:8000/api/get/all/post")
+      .then((response) => response.json())
+      .then((data) => setItems(data));
   }, []);
-
+  console.log(items);
   return (
     <div className="list">
       <ul>
         {items.map((item) => {
-          <li>{item.item}</li>;
+          return <li key={item.id}>{item.item}</li>;
         })}
       </ul>
     </div>
