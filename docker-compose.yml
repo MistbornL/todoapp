@@ -21,7 +21,7 @@ services:
         - "27017:27017"
       volumes:
         - mongodb_volume:/data/db
-  sample:
+  frontend:
     container_name: sample
     build:
       context: /frontend/todo
