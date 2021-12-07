@@ -4,9 +4,9 @@ from fastapi import APIRouter, HTTPException, Depends, status
 
 from fastapi.security import OAuth2PasswordRequestForm
 
-from Todo.apps.service.documents import Todo, User
-from Todo.apps.service.auth import get_password_hash, get_current_user, authenticate_user, create_access_token
-from Todo.apps.service.models import Token
+from Todo.apps.documents.documents import Todo, User
+from Todo.apps.service.auth import get_password_hash, authenticate_user, create_access_token
+from Todo.apps.models.models import Token
 from Todo.config import settings
 
 router = APIRouter(prefix="")
@@ -35,8 +35,8 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
 
 
 @router.post("/api/create/post", status_code=201, response_model=Todo)
-async def create_post(item: Todo, current_user: User = Depends(get_current_user)):
-    item.created_by = str(current_user.email)
+async def create_post(item: Todo ):
+    # item.created_by = str(current_user.email)
     return await item.save()
 
 

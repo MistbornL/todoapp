@@ -8,7 +8,7 @@ from beanie import init_beanie
 from .config import settings
 
 from Todo.apps import router
-from Todo.apps.service.documents import Todo, User
+from Todo.apps.documents.documents import Todo, User
 
 
 def create_app() -> FastAPI:

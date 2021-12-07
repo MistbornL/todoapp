@@ -5,7 +5,7 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from passlib.context import CryptContext
-from Todo.apps.service.documents import User
+from Todo.apps.documents.documents import User
 from Todo.config import settings
 
 
