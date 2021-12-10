@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import "./index.css";
 const Todos = () => {
   const [items, setItems] = useState([]);
   useEffect(() => {
@@ -17,7 +18,12 @@ const Todos = () => {
     <div className="list">
       <ul>
         {items.map((item) => {
-          return <li key={item.item.length}>{item.item}</li>;
+          return (
+            <div className="horizonti">
+              <li key={item.item.length}>{item.item}</li>
+              <button>delete</button>
+            </div>
+          );
         })}
       </ul>
     </div>

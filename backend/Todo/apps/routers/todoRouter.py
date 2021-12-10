@@ -35,9 +35,17 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
 
 
 @router.post("/api/create/post", status_code=201, response_model=Todo)
-async def create_post(item: Todo ):
+async def create_post(item: Todo):
     # item.created_by = str(current_user.email)
-    return await item.save()
+    todo_list = await Todo.find_all().to_list()
+    if len(todo_list) > 0:
+        for data in todo_list:
+            if data.item == item.item:
+                print("already in list")
+            else:
+                return await item.save()
+    else:
+        return await item.save()
 
 
 @router.get("/api/get/post/{item_id}")
@@ -50,3 +58,8 @@ async def get_post(item_id):
 @router.get("/api/get/all/post")
 async def find_all_post():
     return await Todo.find_all().to_list()
+
+
+@router.delete("/api/delete/all/post")
+async def delete_all_post():
+    return await Todo.delete_all()
